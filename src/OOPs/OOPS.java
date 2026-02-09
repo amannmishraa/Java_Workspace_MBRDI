@@ -1,3 +1,4 @@
+package OOPs;
 // Abstraction: abstract class
 abstract class Animal {
     // Encapsulation: private variable
