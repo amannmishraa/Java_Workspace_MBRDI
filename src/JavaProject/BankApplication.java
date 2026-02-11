@@ -1,4 +1,5 @@
-package JavaProject;
+package com.bank;
+
 import java.util.Scanner;
 
 class User {
@@ -44,6 +45,7 @@ class User {
             System.out.println("Updated Balance: ₹" + balance);
         }
     }
+
 
     // Check Balance
     public void checkBalance() {
