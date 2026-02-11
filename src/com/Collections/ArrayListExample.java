@@ -1,6 +1,7 @@
 package com.Collections;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ArrayListExample {
@@ -27,6 +28,10 @@ public class ArrayListExample {
         bookList.add(new Book(100,"Tell me your dreams","Sidney Sheldon"));
         System.out.println(bookList);
 
+        Iterator<String> itr = list1.iterator();
+        while(itr.hasNext()){
+            System.out.println(itr.next());
+        }
 
     }
 }
