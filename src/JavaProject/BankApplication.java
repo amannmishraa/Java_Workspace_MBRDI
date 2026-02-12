@@ -52,7 +52,12 @@ public class BankApplication {
                 case 2:
                     System.out.print("Enter amount to withdraw: ");
                     double withdrawAmount = sc.nextDouble();
-                    user.withdraw(withdrawAmount);
+                    try {
+                        user.withdraw(4800);
+                    } catch (MinimumBalanceExcept e) {
+                        System.out.println("Exception: " + e.getMessage());
+                    }
+
                     break;
 
                 case 3:

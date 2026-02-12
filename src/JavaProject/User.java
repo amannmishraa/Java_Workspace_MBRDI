@@ -1,4 +1,5 @@
 package JavaProject;
+
 public class User {
 
     private String username;
@@ -6,6 +7,8 @@ public class User {
     private String email;
     private String password;
     private double balance;
+
+    private static final double MIN_BALANCE = 500;
 
     public User(String username, String name, String email, String password, double balance) {
         this.username = username;
@@ -15,12 +18,10 @@ public class User {
         this.balance = balance;
     }
 
-    // Login validation
     public boolean login(String username, String password) {
         return this.username.equals(username) && this.password.equals(password);
     }
 
-    // Deposit
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -31,32 +32,36 @@ public class User {
         }
     }
 
-    // Withdraw
-    public void withdraw(double amount) {
+    // 🔥 Updated Withdraw Method with Custom Exception
+    public void withdraw(double amount) throws MinimumBalanceExcept {
+
         if (amount <= 0) {
             System.out.println("Invalid withdrawal amount.");
-        } else if (amount > balance) {
+        }
+        else if (amount > balance) {
             System.out.println("Insufficient balance.");
-        } else {
+        }
+        else if ((balance - amount) < MIN_BALANCE) {
+            throw new MinimumBalanceExcept(
+                    "Cannot withdraw. Minimum balance of ₹500 must be maintained.");
+        }
+        else {
             balance -= amount;
             System.out.println("Withdrawal successful.");
             System.out.println("Updated Balance: ₹" + balance);
         }
     }
 
-    // Check Balance
     public void checkBalance() {
         System.out.println("Current Balance: ₹" + balance);
     }
 
-    // Edit Profile
     public void editProfile(String newName, String newEmail) {
         this.name = newName;
         this.email = newEmail;
         System.out.println("Profile updated successfully.");
     }
 
-    // Change Password
     public void changePassword(String oldPassword, String newPassword) {
         if (this.password.equals(oldPassword)) {
             this.password = newPassword;
